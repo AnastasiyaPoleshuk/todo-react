@@ -1,0 +1,43 @@
+@import '/src/App.variables.less';
+
+.todoList__container {
+  width: 50vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.486);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .todoList {
+    width: 90%;
+    height: 50%;
+  }
+
+  .todoList__add-button {
+    display: block;
+    background: none;
+    border: 2px solid @main-blue;
+    border-radius: 3px;
+    color: @main-light;
+    font-size: 22px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    transition: .3s;
+
+    &:hover {
+      background: @main-blue;
+      border-radius: 5px;
+    }
+  }
+
+  .todoList__todos-wrap {
+    width: 100%;
+  }
+
+  .noTodos {
+    font-size: 24px;
+    text-align: center;
+    font-style: italic;
+    color: @main-light;
+  }
+}

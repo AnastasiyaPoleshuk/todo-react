@@ -1,0 +1,51 @@
+@import '/src/App.variables.less';
+
+
+.form-wrapp {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+
+  .form-title {
+    font-size: 36px;
+    font-weight: bolder;
+    color: @main-light;
+  }
+
+  & p {
+    font-size: 22px;
+    margin-top: 40px;
+  }
+
+  .buttons-block {
+    margin-top: 40px;
+  }
+
+  .buttons-block input {
+    width: 150px;
+    height: 40px;
+    border: 2px solid @main-light;
+    background: none;
+    font-size: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s;
+    
+    &:hover {
+      background: @main-light;
+      color: @main-blue;
+    }
+
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+}
+
+.deleteForm-error {
+  border: 2px solid rgb(190, 26, 54) !important;
+} 

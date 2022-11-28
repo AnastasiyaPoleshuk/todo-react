@@ -1,0 +1,33 @@
+@import '/src/App.variables.less';
+
+.App {
+  width: @main-width;
+  height: @main-height;
+  background-image: url(./assets/bg-view.jpg);
+  background-position: 100%;
+  background-repeat: no-repeat;
+
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .title {
+    width: 50%;
+    text-align: center;
+    font-size: 36px * 3;
+    font-weight: bold;
+    letter-spacing: -2px;
+    text-shadow: 1px 1px 20px rgb(34, 38, 117);
+    color: @main-light;
+    text-transform: uppercase;
+  }
+}
+
+
+
+
+

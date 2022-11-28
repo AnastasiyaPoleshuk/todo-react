@@ -1,0 +1,161 @@
+@import '/src/App.variables.less';
+
+.tasks-edit__form {
+  width: 450px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+
+  .form-title {
+    width: 90%;
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: center;
+    color: @main-light;
+    border-bottom: 1px solid @main-light;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  .edit-task-form__input {
+    width: 320px;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid @main-gray;
+    background: none;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-light;
+    outline: 0;
+
+    &:visited{
+      background: none;
+    }
+
+    &-file {
+      border: none;
+      border-bottom: none;
+    }
+  }
+
+  .edit-task-form__label {
+    width: 320px;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid @main-gray;
+    background: none;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-light;
+    outline: 0;
+    position: relative;
+
+    & input {
+      width: 26px;
+      height: 40px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      border: none;
+      background: none;
+    }
+  }
+
+  .edit-task-form-description {
+    height: 100px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    background: @main-light;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-gray;
+    outline: 0;
+    padding: 5px 10px;
+  }
+
+  .task-form__p {
+    width: 320px;
+    height: 35px;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-light;
+    display: flex;
+    align-items: center;
+  }
+
+  .task-form__checkbox {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+  }
+
+  .form-btn__wrapper {
+    margin-top: 40px;
+  }
+
+  .form-btn {
+    width: 150px;
+    height: 40px;
+    border: 2px solid @main-light;
+    background: none;
+    font-size: 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s;
+    
+    &:hover {
+      background: @main-light;
+      color: @main-blue;
+    }
+
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+
+
+  .inputfile {
+  	width: 0.1px;
+	  height: 0.1px;
+  	opacity: 0;
+	  overflow: hidden;
+  	position: absolute;
+	  z-index: -1;
+  }
+
+  .inputfile + .label {
+    border: 2px solid @main-light;
+    background: none;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: all .3s;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .inputfile:focus + .label,
+  .inputfile + .label:hover {
+    background: @main-light;
+     color: @main-blue;
+  }
+
+  .fileName{
+    width: 155px;
+    font-size: 20px;
+    text-decoration: none;
+    color: @main-light;
+    text-align: end;
+  }
+}
+
+.input-error {
+  border-bottom: 2px solid rgb(190, 26, 54) !important;
+}

@@ -1,0 +1,65 @@
+@import '/src/App.variables.less';
+
+.todoItem {
+  width: 95%;
+  height: 40px;
+  background: @main-light;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: all .3s;
+
+  &:hover {
+    background: @main-blue;
+  }
+
+  .todoItem__complete {
+    width: 25px;
+    height: 25px;
+  }
+
+  .todoItem__name,
+  .todoItem__time {
+    font-size: 22px;
+    transition: .3s;
+  }
+
+  .todoItem__name {
+    cursor: pointer;
+
+    &:hover {
+      color: @main-light;
+    }
+  }
+
+  .todoItem__remove {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: @main-blue;
+    transition: all .3s;
+
+    &:hover {
+      color: @main-light;
+    }
+  }
+
+  .todoItem__remove{
+    margin-left: 20px;
+    color: @main-gray;
+  }
+}
+
+.completed {
+  background: #002A7C;
+  color: @main-light;
+  text-decoration: line-through;
+  transition: all .3s;
+
+  &:hover {
+    background: #002A7C;
+  }
+}

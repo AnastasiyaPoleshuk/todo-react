@@ -1,0 +1,129 @@
+@import '/src/App.variables.less';
+
+.tasks-add__form {
+  width: 400px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+
+  .form-title {
+    width: 90%;
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: center;
+    color: @main-light;
+    border-bottom: 1px solid @main-light;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .task-form__input {
+    width: 295px;
+    height: 35px;
+    border: 2px solid @main-light;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 30px;
+    font-size: 22px;
+    outline: 0;
+
+    &-file {
+      border: 0;
+    }
+  }
+
+  .add-task-form-description {
+    height: 100px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    background: @main-light;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-gray;
+    outline: 0;
+    padding: 5px 10px;
+  }
+
+  .task-form__p {
+    width: 320px;
+    margin-top: 30px;
+    font-size: 22px;
+    color: @main-light;
+    display: flex;
+    align-items: center;
+  }
+
+  .task-form__checkbox {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+  }
+
+  .form-btn__wrapper {
+    margin-top: 40px;
+  }
+
+  .form-btn {
+    width: 150px;
+    height: 40px;
+    border: 2px solid @main-light;
+    background: none;
+    font-size: 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s;
+    
+    &:hover {
+      background: @main-light;
+      color: @main-blue;
+    }
+
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+
+
+
+  .inputfile {
+  	width: 0.1px;
+	  height: 0.1px;
+  	opacity: 0;
+	  overflow: hidden;
+  	position: absolute;
+	  z-index: -1;
+  }
+
+  .inputfile + .label {
+    border: 2px solid @main-light;
+    background: none;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: all .3s;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .inputfile:focus + .label,
+  .inputfile + .label:hover {
+    background: @main-light;
+     color: @main-blue;
+  }
+
+  .fileName{
+    width: 155px;
+    font-size: 18px;
+    text-align: end;
+  }
+
+}
+
+.addForm-error {
+  border: 2px solid rgb(190, 26, 54) !important;
+} 
