@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useContext, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import EditTodoThunk from '../../store/thunks/EditTodoThunk';
 import GetTodoThunk from '../../store/thunks/GetTodoThunk';
 import setFile from '../../api/setFile';
@@ -10,13 +10,9 @@ import dayjs from "dayjs";
 import "./EditTaskForm.less";
 
 const EditTaskForm = () => {
-  const { todoId, closeModal } = useContext(ModalContext);
+  const { todo, closeModal } = useContext(ModalContext);
   const dispatch = useDispatch();
-  const todos = useSelector((state) => { return state.todos; });
-
-  const todoIndex = todos.findIndex(el => el.todoId === todoId);
-  const todo = todos[todoIndex];
-  const date = dayjs.unix(todo.time.seconds).format("DD-MM-YYYY");
+  const date = dayjs.unix(todo.time.seconds).format("YYYY-MM-DD");
   const [editedDate, setEditedDate] = useState(date);
   const [fileData, setFileData] = useState({ name: todo.fileName });
   const {
@@ -60,7 +56,6 @@ const EditTaskForm = () => {
    */
 
   const onSubmit = (data) => {
-
     const date = dayjs(data.date);
     let requestData;
 
@@ -76,7 +71,7 @@ const EditTaskForm = () => {
             isCompleted: data.isCompleted,
             filePath: resFile,
             fileName: fileData.name,
-            todoId
+            todoId: todo.todoId
           };
 
           SendEditedTodo(requestData)
@@ -90,7 +85,7 @@ const EditTaskForm = () => {
         isCompleted: data.isCompleted,
         filePath: "",
         fileName: "",
-        todoId
+        todoId: todo.todoId
       };
       SendEditedTodo(requestData)
     }

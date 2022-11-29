@@ -4,7 +4,7 @@ import CONSTANTS from '../utils/constants';
 export const ModalContext = createContext({
   addTaskModal: false,
   editTaskModal: false,
-  todoId: '',
+  todo: {},
   deleteTaskModal: false,
   openModal: () => { },
   closeModal: () => { },
@@ -13,7 +13,7 @@ export const ModalContext = createContext({
 export const ModalState = ({ children }) => {
   const [addTaskModal, setAddTaskModal] = useState(false);
   const [deleteTaskModal, setDeleteTaskModal] = useState(false);
-  const [todoId, setTodoId] = useState('');
+  const [todo, setTodo] = useState('');
   const [editTaskModal, setEditTaskModal] = useState(false);
 
   const openModal = (type, ...arg) => {
@@ -22,10 +22,11 @@ export const ModalState = ({ children }) => {
         setAddTaskModal(true);
         break;
       case CONSTANTS.TASK_DELETE__MODAL:
+        setTodo(arg[0]);
         setDeleteTaskModal(true);
         break;
       case CONSTANTS.TASK_EDIT__MODAL:
-        setTodoId(arg[0]);
+        setTodo(arg[0]);
         setEditTaskModal(true);
         break;
       default:
@@ -50,7 +51,7 @@ export const ModalState = ({ children }) => {
 
   return (
     <ModalContext.Provider value={{
-      todoId,
+      todo,
       editTaskModal,
       addTaskModal,
       deleteTaskModal,

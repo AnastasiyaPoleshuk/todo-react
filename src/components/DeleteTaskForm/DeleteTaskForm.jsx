@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import DeleteTodoThunk from '../../store/thunks/DeleteTodoThunk';
 import { ModalContext } from '../../context/ModalContext';
 import deleteFile from '../../api/deleteFile';
@@ -8,13 +8,12 @@ import CONSTANTS from '../../utils/constants';
 import "./DeleteTaskForm.less";
 
 const DeleteTaskForm = () => {
-  const { closeModal } = useContext(ModalContext);
+  const { todo, closeModal } = useContext(ModalContext);
   const dispatch = useDispatch();
-  const todos = useSelector((state) => { return state.todos; });
+  const [error, setError] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   /**
@@ -23,20 +22,26 @@ const DeleteTaskForm = () => {
    */
 
   const onSubmit = (data) => {
-    let index = todos.findIndex(el => el.name === data.name);
-    const todoId = todos[index].todoId;
-    if (todos[index].fileName) {
-      deleteFile(todos[index].fileName)
+    if (todo.name !== data.name) {
+      setError(true);
+      return;
+    };
+    
+
+    if (todo.fileName) {
+      deleteFile(todo.fileName)
         .then(() => {
-          dispatch(DeleteTodoThunk(todoId))
+          dispatch(DeleteTodoThunk(todo.todoId))
             .then(() => {
               closeModal(CONSTANTS.TASK_DELETE__MODAL);
+              setError(false);
             })
         })
     } else {
-      dispatch(DeleteTodoThunk(todoId))
+      dispatch(DeleteTodoThunk(todo.todoId))
         .then(() => {
           closeModal(CONSTANTS.TASK_DELETE__MODAL);
+          setError(false);
         })
     }
   }
@@ -45,13 +50,16 @@ const DeleteTaskForm = () => {
     <div className="form-wrapp">
       <form action="#" className="tasks-add__form" onSubmit={handleSubmit(onSubmit)}>
         <h2 className="form-title">Удалить задачу?</h2>
-        <p>Введите заголовок задачи</p>
+        <p>Для удаления введите заголовок задачи</p>
         <input
           type="string"
-          className={`task-form__input ${errors.name ? 'deleteForm-error' : null}`}
+          className={`task-form__input ${error ? 'deleteForm-error' : null}`}
           placeholder="Заголовок"
           {...register('name', { required: true })}
         />
+        {
+          error && <p className="error-message">*не верное название </p>
+        }
         <div className="buttons-block">
           <input type="submit" value="Удалить" />
           <input type="button" value="Закрыть" onClick={() => { return closeModal(CONSTANTS.TASK_DELETE__MODAL); }} />

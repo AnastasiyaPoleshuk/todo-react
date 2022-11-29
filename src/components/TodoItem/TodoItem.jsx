@@ -29,14 +29,28 @@ const TodoItem = (props) => {
     const date = dayjs.unix(time.seconds).format("DD-MM-YYYY");
     return date;
   }
+  
+  /**
+   * 
+   * @param  {...string} args 
+   * @returns {{id: number, name: string, time: date, description: string, isCompleted: boolean, filePath: string, fileName: string, todoId: string }}
+   */
+
+  const getCurrentTodo = (...args) => {
+    let index = todos.findIndex(el => el.todoId === todoId);
+    const todo = todos[index];
+    if (args[0]) {
+      openModal(args[0], todo)
+    }
+    return todo;
+  }
 
   /**
    * Функция отслеживает изменения значения checkbox и загружает соответствующее значение в базу данных
    */
   const handler = () => {
     setChecked(!checked);
-    let index = todos.findIndex(el => el.todoId === todoId);
-    const todo = todos[index];
+    const todo = getCurrentTodo();
     const requestData = {
       id: todo.id,
       name,
@@ -53,10 +67,10 @@ const TodoItem = (props) => {
   return (
     <div className={`todoItem ${checked ? 'completed' : null}`} >
       <input type="checkbox" className="todoItem__complete" checked={checked} onChange={() => handler()} />
-      <h2 className="todoItem__name" onClick={() => { return openModal(CONSTANTS.TASK_EDIT__MODAL, todoId); }}>{name}</h2>
+      <h2 className="todoItem__name" onClick={() => { return getCurrentTodo(CONSTANTS.TASK_EDIT__MODAL); }}>{name}</h2>
       <h2 className="todoItem__time">{parsTime()}</h2>
       <div className="todoItem__buttons-block">
-        <button className="todoItem__remove" onClick={() => { return openModal(CONSTANTS.TASK_DELETE__MODAL); }}>&#10006;</button>
+        <button className="todoItem__remove" onClick={() => { return getCurrentTodo(CONSTANTS.TASK_DELETE__MODAL); }}>&#10006;</button>
       </div>
     </div>
   );
