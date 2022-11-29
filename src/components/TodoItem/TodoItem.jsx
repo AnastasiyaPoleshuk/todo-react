@@ -45,6 +45,11 @@ const TodoItem = (props) => {
     return todo;
   }
 
+  useEffect(() => {
+    const todo = getCurrentTodo();
+    setChecked(todo.isCompleted);
+  }, [getCurrentTodo().isCompleted])
+
   /**
    * Функция отслеживает изменения значения checkbox и загружает соответствующее значение в базу данных
    */

@@ -50,7 +50,7 @@ const DeleteTaskForm = () => {
     <div className="form-wrapp">
       <form action="#" className="tasks-add__form" onSubmit={handleSubmit(onSubmit)}>
         <h2 className="form-title">Удалить задачу?</h2>
-        <p>Для удаления введите заголовок задачи</p>
+        <p>Для удаления введите {todo.name}</p>
         <input
           type="string"
           className={`task-form__input ${error ? 'deleteForm-error' : null}`}

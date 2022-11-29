@@ -15,6 +15,7 @@ const EditTaskForm = () => {
   const date = dayjs.unix(todo.time.seconds).format("YYYY-MM-DD");
   const [editedDate, setEditedDate] = useState(date);
   const [fileData, setFileData] = useState({ name: todo.fileName });
+  const [prevFileData, setPrevFileData] = useState({ name: todo.fileName });
   const {
     register,
     handleSubmit,
@@ -59,10 +60,10 @@ const EditTaskForm = () => {
     const date = dayjs(data.date);
     let requestData;
 
-    if (fileData) {
+    if (fileData.name !== "" && fileData.name !== prevFileData.name) {
       setFile(fileData)
         .then((resFile) => {
-
+          console.log(resFile);
           requestData = {
             id: todo.id,
             name: data.name,
@@ -83,8 +84,8 @@ const EditTaskForm = () => {
         time: date.$d,
         description: data.description,
         isCompleted: data.isCompleted,
-        filePath: "",
-        fileName: "",
+        filePath: todo.filePath,
+        fileName: todo.fileName,
         todoId: todo.todoId
       };
       SendEditedTodo(requestData)
