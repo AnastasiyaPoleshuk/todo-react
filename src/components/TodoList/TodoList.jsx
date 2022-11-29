@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ModalContext } from '../../context/ModalContext';
 import CONSTANTS from '../../utils/constants';
 import TodoItem from "../TodoItem/TodoItem";

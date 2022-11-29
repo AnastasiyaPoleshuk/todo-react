@@ -40,38 +40,59 @@ const EditTaskForm = () => {
   const SetDateValue = (e) => setEditedDate(e.target.value);
 
   /**
-   * Функция формирует объект измененных данных о задаче и обновляет объект в базе данных
+   * отправляет запрос в базу данных
+   * @param {{ id: number; name: string; time: object; description: string; isCompleted: boolean; filePath: string; fileName: string; todoId: string }} request 
+   */
+
+  const SendEditedTodo = (request) => {
+    dispatch(EditTodoThunk(request))
+      .then(() => {
+
+        dispatch(GetTodoThunk());
+        reset();
+        closeModal(CONSTANTS.TASK_EDIT__MODAL);
+      })
+  }
+
+  /**
+   * Функция формирует объект измененных данных о задаче 
    * @param {{ name: string; date: string; description: string; isCompleted: boolean; }} data 
    */
 
   const onSubmit = (data) => {
 
     const date = dayjs(data.date);
+    let requestData;
 
     if (fileData) {
       setFile(fileData)
         .then((resFile) => {
 
-          const requestData = {
-            todo: {
-              id: todo.id,
-              name: data.name,
-              time: date.$d,
-              description: data.description,
-              isCompleted: data.isCompleted,
-              filePath: resFile,
-              fileName: fileData.name
-            },
+          requestData = {
+            id: todo.id,
+            name: data.name,
+            time: date.$d,
+            description: data.description,
+            isCompleted: data.isCompleted,
+            filePath: resFile,
+            fileName: fileData.name,
             todoId
           };
 
-          dispatch(EditTodoThunk(requestData))
-            .then(() => {
-              dispatch(GetTodoThunk());
-              reset();
-              closeModal(CONSTANTS.TASK_EDIT__MODAL);
-            })
+          SendEditedTodo(requestData)
         })
+    } else {
+      requestData = {
+        id: todo.id,
+        name: data.name,
+        time: date.$d,
+        description: data.description,
+        isCompleted: data.isCompleted,
+        filePath: "",
+        fileName: "",
+        todoId
+      };
+      SendEditedTodo(requestData)
     }
   };
 

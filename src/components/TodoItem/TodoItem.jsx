@@ -17,9 +17,9 @@ const TodoItem = (props) => {
     const dateNow = new Date();
 
     if (Date.parse(dateNow) > time.seconds * 1000 && checked !== true) {
-      handler()
+      handler();
     }
-  }, [time])
+  }, [time]);
 
   /**
    * функция преобразует число секунд в строку даты формата DD-MM-YYYY
@@ -38,13 +38,13 @@ const TodoItem = (props) => {
     let index = todos.findIndex(el => el.todoId === todoId);
     const todo = todos[index];
     const requestData = {
-      todo: {
-        id: todo.id,
-        name,
-        time,
-        description: todo.description,
-        isCompleted: !isComplete,
-      },
+      id: todo.id,
+      name,
+      time,
+      description: todo.description,
+      isCompleted: !isComplete,
+      filePath: todo.filePath,
+      fileName: todo.fileName,
       todoId
     }
     dispatch(EditTodoThunk(requestData))

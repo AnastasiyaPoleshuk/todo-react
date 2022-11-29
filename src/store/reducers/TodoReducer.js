@@ -13,7 +13,7 @@ const TodoReducer = (state = initialState, action) => {
       return { ...state, todos: newTodos };
     case EDIT__TODO:
       const oldTodos = state.todos.filter((todo) => todo.todoId !== action.payload.todoId);
-      return { ...state, todos: [...oldTodos, action.payload.todo] };
+      return { ...state, todos: [...oldTodos, action.payload] };
     default:
       return state;
   }

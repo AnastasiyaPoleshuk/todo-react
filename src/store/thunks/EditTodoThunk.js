@@ -3,7 +3,7 @@ import { EditTodoAction } from '../actions/todosActions';
 
 /**
  * 
- * @param {{ id: number; name: string; time: object; description: string; isCompleted: boolean; filePath: string; fileName: string; }} data 
+ * @param {{ id: number; name: string; time: object; description: string; isCompleted: boolean; filePath: string; fileName: string; todoId: string }} data 
  */
 
 const EditTodoThunk = (data) => {

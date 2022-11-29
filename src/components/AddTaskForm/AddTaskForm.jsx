@@ -59,7 +59,7 @@ const AddTaskForm = () => {
         name: data.name,
         time: date.$d,
         description: data.description,
-        isCompleted: data.isCompleted,
+        isCompleted: false,
         filePath: '',
         fileName: ''
       };
